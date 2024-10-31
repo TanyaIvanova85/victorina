@@ -1,0 +1,77 @@
+function showQuestion() {
+        const questionData = questions[currentQuestionIndex];
+        const quizContainer = document.getElementById('quiz-container');
+        quizContainer.innerHTML = `<div class="question-box">${questionData.question}</div>`;
+        
+        questionData.answers.forEach((answer, index) => {
+            const answerDiv = document.createElement('div');
+            answerDiv.classList.add('answer');
+            answerDiv.textContent = answer;
+            answerDiv.addEventListener('click', () => selectAnswer(index));
+            quizContainer.appendChild(answerDiv);
+        });
+    }
+
+    function selectAnswer(selectedIndex) {
+        const questionData = questions[currentQuestionIndex];
+        const answers = document.querySelectorAll('.answer');
+        
+        if (selectedIndex === questionData.correct) {
+            answers[selectedIndex].classList.add('correct');
+            score++;
+        } else {
+            answers[selectedIndex].classList.add('incorrect');
+        }
+        
+        answers.forEach((answer, index) => {
+            if (index === questionData.correct) {
+                answer.classList.add('correct');
+            }
+            answer.style.pointerEvents = 'none'; // блокиране на допълнителни кликвания
+        });
+        
+        document.getElementById('points').textContent = `Текущи точки: ${score}`;
+        
+        if (currentQuestionIndex < questions.length - 1) {
+            document.getElementById('next-button').style.display = 'block';
+        } else {
+            document.getElementById('end-button').style.display = 'block';
+        }
+    }
+
+    document.getElementById('next-button').addEventListener('click', () => {
+        currentQuestionIndex++;
+        showQuestion();
+        document.getElementById('next-button').style.display = 'none';
+    });
+
+    document.getElementById('end-button').addEventListener('click', () => {
+        showResult();
+    });
+
+    function showResult() {
+        const resultDiv = document.getElementById('result');
+        resultDiv.style.display = 'block';
+        let message = `Вие събрахте общо ${score} точки. `;
+
+        if (score >= 9) {
+            message += "Справихте се отлично! 😊";
+        } else if (score >= 7) {
+            message += "Справихте се много добре! 😊";
+        } else if (score >= 5) {
+            message += "Справихте се добре! 😊";
+        } else {
+            message += "Прочети още по темата и играй отново! 😢";
+        }
+
+        resultDiv.textContent = message;
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('next-button').style.display = 'none';
+        document.getElementById('end-button').style.display = 'none';
+    }
+
+    showQuestion();
+</script>
+
+</body>
+</html>

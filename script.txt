@@ -1,0 +1,29 @@
+ const questions = [
+        { question: "Какво е вещество?", answers: ["Нещо, което можем да видим само с микроскоп.", "Нещо, което заема място и има маса.", "Нещо, което не може да се докосне."], correct: 1 },
+        { question: "Кое от следните е твърдо вещество?", answers: ["Вода", "Лед", "Въздух"], correct: 1 },
+        { question: "Кое от следните вещества е газ?", answers: ["Водород", "Сол", "Желязо"], correct: 0 },
+        { question: "Каква форма има течността?", answers: ["Запазва собствена форма.", "Приема формата на съда, в който е.", "Никога не променя формата си."], correct: 1 },
+        { question: "Кой от следните примери е смес?", answers: ["Чиста вода", "Въздух", "Злато"], correct: 1 },
+        { question: "Кое е вярно за твърдите вещества?", answers: ["Имат определен обем, но не определена форма.", "Имат определен обем и определена форма.", "Нямат нито обем, нито форма."], correct: 1 },
+        { question: "Какво представлява хомогенна смес?", answers: ["Смес, в която компонентите не могат да се разграничат.", "Смес, в която компонентите са лесно различими.", "Смес, която може да се раздели физически."], correct: 0 },
+        { question: "Какво е основното свойство на течността?", answers: ["Не заема място.", "Заема място и може да променя формата си.", "Има определена форма."], correct: 1 },
+        { question: "Кое от следните е истинно за газовете?", answers: ["Имат собствена форма и обем.", "Заемат целия обем на съда, в който са.", "Не заемат място."], correct: 1 },
+        { question: "Какво е състояние на веществото, в което молекулите са близо една до друга?", answers: ["Твърдо", "Газообразно", "Течно"], correct: 0 }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function showQuestion() {
+        const questionData = questions[currentQuestionIndex];
+        const quizContainer = document.getElementById('quiz-container');
+        quizContainer.innerHTML = `<div class="question-box">${questionData.question}</div>`;
+        
+        questionData.answers.forEach((answer, index) => {
+            const answerDiv = document.createElement('div');
+            answerDiv.classList.add('answer');
+            answerDiv.textContent = answer;
+            answerDiv.addEventListener('click', () => selectAnswer(index));
+            quizContainer.appendChild(answerDiv);
+        });
+    }

@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Викторина по Човекът и природата</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f8ff; }
+        #znaiko { position: absolute; top: 10px; left: 10px; width: 100px; }
+        #points { position: absolute; top: 10px; left: 120px; font-size: 20px; }
+        .question-box { margin: 20px 0; }
+        .answer { border: 1px solid #000; padding: 10px; cursor: pointer; margin: 5px 0; }
+        .correct { background-color: green; color: white; }
+        .incorrect { background-color: red; color: white; }
+        #result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<img id="znaiko" src="https://example.com/znaiko_image" alt="Знайко">
+<div id="points">Текущи точки: 0</div>
+
+<div id="quiz-container"></div>
+<button id="next-button" style="display:none;">Следващ въпрос</button>
+<button id="end-button" style="display:none;">Край</button>
+<div id="result"></div>
